@@ -1,0 +1,24 @@
+{
+  "name": "api-ecommerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.8.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "nodemon": "^2.0.15",
+    "sucrase": "^3.20.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2"
+  }
+}
