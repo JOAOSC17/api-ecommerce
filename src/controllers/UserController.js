@@ -3,15 +3,17 @@ import { UserModel } from '../database';
 const UserController = {
   store: async (req, res) => {
     try {
-      const newUser = await UserModel.create({
-        name: 'carlos',
-        email: 'carlos@gmail.com',
-        password: '123456',
-        isAdmin: true,
+      const newUser = await UserModel.create(req.body);
+      const {
+        id, name, email, isAdmin,
+      } = newUser;
+      return res.json({
+        id, name, email, isAdmin,
       });
-      return res.json(newUser);
-    } catch (error) {
-      return console.log(error);
+    } catch (e) {
+      return res.status(400).json({
+        errors: e.errors.map((err) => err.message),
+      });
     }
   },
 };
