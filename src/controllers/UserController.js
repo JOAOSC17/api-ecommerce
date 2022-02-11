@@ -16,5 +16,15 @@ const UserController = {
       });
     }
   },
+  index: async (req, res) => {
+    try {
+      const users = await UserModel.findAll({ attributes: ['id', 'name', 'email', 'isAdmin'] });
+      return res.json(users);
+    } catch (e) {
+      return res.status(500).json({
+        errors: e.errors.map((err) => err.message),
+      });
+    }
+  },
 };
 export default UserController;
