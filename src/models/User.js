@@ -1,11 +1,9 @@
 import bcryptjs from 'bcryptjs';
-import Sequelize from 'sequelize';
 
-export default (sequelize) => {
-  console.log(sequelize);
+export default (sequelize, DataTypes) => {
   const User = sequelize.define('user', {
     name: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       defaultValue: '',
       validate: {
         len: {
@@ -15,7 +13,7 @@ export default (sequelize) => {
       },
     },
     email: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       defaultValue: '',
       unique: {
         msg: 'Email já existe',
@@ -27,11 +25,11 @@ export default (sequelize) => {
       },
     },
     password_hash: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       defaultValue: '',
     },
     password: {
-      type: Sequelize.VIRTUAL,
+      type: DataTypes.VIRTUAL,
       defaultValue: '',
       validate: {
         len: {
@@ -41,7 +39,7 @@ export default (sequelize) => {
       },
     },
     isAdmin: {
-      type: Sequelize.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
   }, {

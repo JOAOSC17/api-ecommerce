@@ -1,6 +1,6 @@
 import express from 'express';
 import UserRoutes from './src/routes/UserRoutes';
-import './src/database';
+// import './src/database';
 
 const app = express();
 

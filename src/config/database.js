@@ -13,6 +13,7 @@ module.exports = {
     underscoredAll: true,
     createdAt: 'created_at',
     updatedAt: 'updated_at',
+    isAdmin: 'is_admin',
   },
   dialectOptions: {
     timezone: 'America/Sao_Paulo',

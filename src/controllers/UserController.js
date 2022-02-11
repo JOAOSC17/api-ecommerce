@@ -1,9 +1,9 @@
-import User from '../models/User';
+import { UserModel } from '../database';
 
 const UserController = {
   store: async (req, res) => {
     try {
-      const newUser = await User.create({
+      const newUser = await UserModel.create({
         name: 'carlos',
         email: 'carlos@gmail.com',
         password: '123456',
