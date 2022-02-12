@@ -47,5 +47,31 @@ const UserController = {
       });
     }
   },
+  update: async (req, res) => {
+    try {
+      if (!req.params.id) {
+        return res.status(400).json({
+          errors: ['ID não enviado.'],
+        });
+      }
+      const user = await UserModel.findByPk(req.params.id);
+      if (!user) {
+        return res.status(404).json({
+          errors: ['Usuário não encontrado'],
+        });
+      }
+      const newData = await user.update(req.body);
+      const {
+        id, name, email, isAdmin,
+      } = newData;
+      return res.json({
+        id, name, email, isAdmin,
+      });
+    } catch (e) {
+      return res.status(400).json({
+        errors: e.errors.map((err) => err.message),
+      });
+    }
+  },
 };
 export default UserController;

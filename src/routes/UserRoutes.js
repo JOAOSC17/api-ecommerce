@@ -5,4 +5,5 @@ const route = express.Router();
 route.post('/', UserController.store);
 route.get('/', UserController.index);
 route.get('/:id', UserController.show);
+route.put('/:id', UserController.update);
 export default route;
