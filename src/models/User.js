@@ -50,9 +50,6 @@ export default (sequelize, DataTypes) => {
         }
       },
     },
-    passwordIsValid(password) {
-      return bcryptjs.compare(password, User.password_hash);
-    },
   });
   return User;
 };
