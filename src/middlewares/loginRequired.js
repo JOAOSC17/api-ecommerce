@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { UserModel } from '../database';
+// import { UserModel } from '../database';
 
 const verifyToken = async (req, res, next) => {
   const { authorization } = req.headers;
@@ -13,18 +13,6 @@ const verifyToken = async (req, res, next) => {
     const [, token] = authorization.split(' ');
     const data = jwt.verify(token, process.env.TOKEN_SECRET);
     const { id, email, isAdmin } = data;
-    const user = await UserModel.findOne({
-      where: {
-        id,
-        email,
-      },
-    });
-
-    if (!user) {
-      return res.status(401).json({
-        errors: ['Usuário inválido'],
-      });
-    }
     req.userId = id;
     req.userEmail = email;
     req.userIsAdmin = isAdmin;
@@ -45,6 +33,22 @@ export const verifyTokenAndAuthorization = (req, res, next) => {
       });
     });
     return next();
+  } catch (e) {
+    return res.status(400).json({
+      errors: e.errors.map((err) => err.message),
+    });
+  }
+};
+export const verifyTokenAndAdmin = (req, res, next) => {
+  try {
+    verifyToken(req, res, () => {
+      if (req.userIsAdmin) {
+        return next();
+      }
+      return res.status(403).json({
+        errors: ['You are not alowed to do that!'],
+      });
+    });
   } catch (e) {
     return res.status(400).json({
       errors: e.errors.map((err) => err.message),
