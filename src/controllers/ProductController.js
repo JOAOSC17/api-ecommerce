@@ -78,5 +78,29 @@ const ProductController = {
       });
     }
   },
+  delete: async (req, res) => {
+    try {
+      if (!req.params.id) {
+        return res.status(400).json({
+          errors: ['ID não enviado.'],
+        });
+      }
+
+      const product = await ProductModel.findByPk(req.params.id);
+
+      if (!product) {
+        return res.status(400).json({
+          errors: ['Produto não existe'],
+        });
+      }
+
+      await product.destroy();
+      return res.json(product);
+    } catch (e) {
+      return res.status(400).json({
+        errors: e.errors.map((err) => err.message),
+      });
+    }
+  },
 };
 export default ProductController;
