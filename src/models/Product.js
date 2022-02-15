@@ -6,7 +6,7 @@ export default (sequelize, DataTypes) => {
       validate: {
         len: {
           args: [3, 255],
-          msg: 'Campo nome deve ter entre 3 e 255 caracteres',
+          msg: 'Campo title deve ter entre 3 e 255 caracteres',
         },
       },
     },
@@ -16,7 +16,7 @@ export default (sequelize, DataTypes) => {
       validate: {
         len: {
           args: [3, 1000],
-          msg: 'Campo nome deve ter entre 3 e 1000 caracteres',
+          msg: 'Campo description deve ter entre 3 e 1000 caracteres',
         },
       },
     },
@@ -25,7 +25,7 @@ export default (sequelize, DataTypes) => {
       defaultValue: '',
       validate: {
         isFloat: {
-          msg: 'Altura precisa ser um número inteiro ou de ponto flutuante',
+          msg: 'Price precisa ser um número inteiro ou de ponto flutuante',
         },
       },
     },

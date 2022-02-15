@@ -1,15 +1,6 @@
 import express from 'express';
-import { ProductModel } from '../database';
+import ProductController from '../controllers/ProductController';
 
 const route = express.Router();
-route.post('/', async (req, res) => {
-  try {
-    const newProduct = await ProductModel.create(req.body);
-    return res.json(newProduct);
-  } catch (e) {
-    return res.status(400).json({
-      errors: e.errors.map((err) => err.message),
-    });
-  }
-});
+route.post('/', ProductController.store);
 export default route;
