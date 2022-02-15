@@ -16,5 +16,15 @@ const ProductController = {
       });
     }
   },
+  index: async (req, res) => {
+    try {
+      const products = await ProductModel.findAll({ attributes: ['id', 'title', 'description', 'price'] });
+      return res.json(products);
+    } catch (e) {
+      return res.status(500).json({
+        errors: e.errors.map((err) => err.message),
+      });
+    }
+  },
 };
 export default ProductController;
