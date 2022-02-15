@@ -28,6 +28,11 @@ const ProductController = {
   },
   show: async (req, res) => {
     try {
+      if (!req.params.id) {
+        return res.status(400).json({
+          errors: ['ID não enviado.'],
+        });
+      }
       const product = await ProductModel.findByPk(req.params.id);
 
       if (!product) {
@@ -38,6 +43,32 @@ const ProductController = {
       const {
         id, title, description, price,
       } = product;
+      return res.json({
+        id, title, description, price,
+      });
+    } catch (e) {
+      return res.status(400).json({
+        errors: e.errors.map((err) => err.message),
+      });
+    }
+  },
+  update: async (req, res) => {
+    try {
+      if (!req.params.id) {
+        return res.status(400).json({
+          errors: ['ID não enviado.'],
+        });
+      }
+      const product = await ProductModel.findByPk(req.params.id);
+      if (!product) {
+        return res.status(404).json({
+          errors: ['Produto não encontrado'],
+        });
+      }
+      const newData = await product.update(req.body);
+      const {
+        id, title, description, price,
+      } = newData;
       return res.json({
         id, title, description, price,
       });
