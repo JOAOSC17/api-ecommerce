@@ -1,6 +1,6 @@
 import express from 'express';
 import ProductController from '../controllers/ProductController';
-import verifyTokenAndAdmin from '../middlewares/loginRequired';
+import { verifyTokenAndAdmin } from '../middlewares/loginRequired';
 
 const route = express.Router();
 route.post('/', verifyTokenAndAdmin, ProductController.store);
