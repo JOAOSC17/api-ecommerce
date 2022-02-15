@@ -26,5 +26,26 @@ const ProductController = {
       });
     }
   },
+  show: async (req, res) => {
+    try {
+      const product = await ProductModel.findByPk(req.params.id);
+
+      if (!product) {
+        return res.status(404).json({
+          errors: ['Produto não encontrado'],
+        });
+      }
+      const {
+        id, title, description, price,
+      } = product;
+      return res.json({
+        id, title, description, price,
+      });
+    } catch (e) {
+      return res.status(400).json({
+        errors: e.errors.map((err) => err.message),
+      });
+    }
+  },
 };
 export default ProductController;
