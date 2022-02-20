@@ -1,4 +1,3 @@
-// import bcryptjs from 'bcryptjs';
 import { Sequelize, DataTypes } from 'sequelize';
 import databaseConfig from '../config/database';
 import Order from '../models/Order';
@@ -6,7 +5,7 @@ import OrderProduct from '../models/OrderProduct';
 import Product from '../models/Product';
 import User from '../models/User';
 
-const connection = new Sequelize(databaseConfig);
+export const connection = new Sequelize(databaseConfig);
 export const UserModel = User(connection, DataTypes);
 export const ProductModel = Product(connection, DataTypes);
 export const OrderModel = Order(connection, DataTypes);
@@ -18,9 +17,8 @@ UserModel.associate = function () {
   });
 };
 ProductModel.associate = function () {
-  ProductModel.belongsToMany(OrderModel, {
-    through: OrderProductModel,
-    foreignKey: 'product_id',
+  ProductModel.belongsTo(OrderModel, {
+    foreignKey: 'order_id',
     as: 'orders',
   });
 };
@@ -31,9 +29,10 @@ OrderModel.associate = function () {
   });
 };
 OrderModel.associate = function () {
-  OrderModel.belongsToMany(ProductModel, {
+  OrderModel.hasMany(ProductModel, {
     through: OrderProductModel,
-    foreignKey: 'order_id',
-    as: 'products',
   });
 };
+
+OrderModel.belongsToMany(ProductModel, { through: OrderProductModel });
+ProductModel.belongsToMany(OrderModel, { through: OrderProductModel });

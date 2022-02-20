@@ -4,21 +4,33 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "test": "jest",
+    "dev": "nodemon server.js",
+    "start": "node src/server.js",
+    "lint": "eslint --ext .js --fix"
   },
   "keywords": [],
   "author": "",
+  "contributors": [
+    "Iago Ferreira <iago-ferreira@outlook.com> (https://www.github.com/iagxferreira)"
+  ],
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^8.8.0",
+    "@babel/cli": "^7.17.3",
+    "@babel/core": "^7.17.5",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "eslint": "^8.9.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
+    "jest": "^27.5.1",
     "nodemon": "^2.0.15",
     "sequelize-cli": "^6.4.1",
     "sucrase": "^3.20.3"
   },
   "dependencies": {
+    "babel-jest": "^27.5.1",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",

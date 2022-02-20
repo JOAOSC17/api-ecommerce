@@ -11,9 +11,6 @@ module.exports = {
       allowNull: false,
       references: { model: 'users', key: 'id' },
     },
-    total_price: {
-      type: Sequelize.DECIMAL,
-    },
     created_at: {
       type: Sequelize.DATE,
       allowNull: false,

@@ -8,10 +8,8 @@ O projeto é construir uma api de ecommerce com bancos relacionais
 - mariadb
 - sequelize
 ## ℹ️ Para baixar todas dependencias
-~~~
-npm install
+```shell
+$ npm install
   ou
-yarn install
-~~~
-
----
+$ yarn install
+```

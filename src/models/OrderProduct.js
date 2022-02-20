@@ -1,10 +1,19 @@
-export default (sequelize, DataTypes) => {
-  const OrdersProducts = sequelize.define('orders_products', {
-    order_id: DataTypes.INTEGER,
-    product_id: DataTypes.INTEGER,
-    quantity_buyed: DataTypes.INTEGER,
-    product_price: DataTypes.DECIMAL,
-  }, {
-  });
-  return OrdersProducts;
-};
+import { OrderModel, ProductModel } from '../database';
+
+export default (sequelize, DataTypes) => sequelize.define('orders_products', {
+  order_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: OrderModel,
+      key: 'id',
+    },
+  },
+  product_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: ProductModel,
+      key: 'id',
+    },
+  },
+}, {
+});

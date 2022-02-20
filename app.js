@@ -1,6 +1,6 @@
 import express from 'express';
 import UserRoutes from './src/routes/UserRoutes';
-// import './src/database';
+import './src/database';
 import LoginRoutes from './src/routes/LoginRoutes';
 import ProductRoutes from './src/routes/ProductRoutes';
 import OrderRoutes from './src/routes/OrderRoutes';

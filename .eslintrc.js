@@ -11,11 +11,5 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    'no-console': 'off',
-    'no-param-reassign': 'off',
-    'import/prefer-default-export': 'off',
-    'max-len': 'off',
-    camelcase: 'off',
-    'no-await-in-loop': 'off',
   },
 };

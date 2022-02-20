@@ -63,5 +63,6 @@ route.post('/', verifyToken, async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+  // addCart > (produto, order) => {findById na order e order.addProduct(product)}
 });
 export default route;
