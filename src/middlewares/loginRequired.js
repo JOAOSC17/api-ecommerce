@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 // import { UserModel } from '../database';
 
-const verifyToken = async (req, res, next) => {
+export const verifyToken = async (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
