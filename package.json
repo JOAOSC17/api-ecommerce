@@ -10,7 +10,7 @@
     "lint": "eslint --ext .js --fix"
   },
   "keywords": [],
-  "author": "",
+  "author": "João Costa <costav1402@gmail.com> (https://github.com/JOAOSC17)",
   "contributors": [
     "Iago Ferreira <iago-ferreira@outlook.com> (https://www.github.com/iagxferreira)"
   ],

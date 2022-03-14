@@ -36,5 +36,44 @@ const OrderController = {
       });
     }
   },
+  index: async (req, res) => {
+    try {
+      const order = await OrderModel.findAll({
+        attributes: ['id', 'user_id', 'totalPrice'],
+        order: [['id', 'DESC'], [ProductModel, 'id', 'DESC']],
+        include: {
+          model: ProductModel,
+          attributes: ['title', 'description', 'price'],
+        },
+      });
+      return res.json(order);
+    } catch (e) {
+      return res.status(500).json({
+        errors: e.errors.map((err) => err.message),
+      });
+    }
+  },
+  show: async (req, res) => {
+    try {
+      const order = await OrderModel.findByPk(req.params.id, {
+        attributes: ['id', 'user_id', 'totalPrice'],
+        include: {
+          model: ProductModel,
+          attributes: ['title', 'description', 'price'],
+        },
+      });
+
+      if (Number(order.user_id) !== Number(req.userId)) {
+        return res.status(400).json({
+          errors: ['Not allowed'],
+        });
+      }
+      return res.json(order);
+    } catch (e) {
+      return res.status(500).json({
+        errors: e.errors.map((err) => err.message),
+      });
+    }
+  },
 };
 export default OrderController;
