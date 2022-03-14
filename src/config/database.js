@@ -14,6 +14,7 @@ module.exports = {
     createdAt: 'created_at',
     updatedAt: 'updated_at',
     isAdmin: 'is_admin',
+    totalPrice: 'total_price',
   },
   dialectOptions: {
     timezone: 'America/Sao_Paulo',
