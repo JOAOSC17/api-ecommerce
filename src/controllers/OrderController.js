@@ -21,7 +21,7 @@ const OrderController = {
       const orderWithProducts = await OrderModel.findByPk(
         id,
         {
-          attributes: ['id', 'user_id', 'totalPrice'],
+          attributes: ['id', 'user_id', 'totalPrice', 'paid'],
           order: [['id', 'DESC'], [ProductModel, 'id', 'DESC']],
           include: {
             model: ProductModel,
@@ -39,7 +39,7 @@ const OrderController = {
   index: async (req, res) => {
     try {
       const order = await OrderModel.findAll({
-        attributes: ['id', 'user_id', 'totalPrice'],
+        attributes: ['id', 'user_id', 'totalPrice', 'paid'],
         order: [['id', 'DESC'], [ProductModel, 'id', 'DESC']],
         include: {
           model: ProductModel,
@@ -56,7 +56,7 @@ const OrderController = {
   show: async (req, res) => {
     try {
       const order = await OrderModel.findByPk(req.params.id, {
-        attributes: ['id', 'user_id', 'totalPrice'],
+        attributes: ['id', 'user_id', 'totalPrice', 'paid'],
         include: {
           model: ProductModel,
           attributes: ['title', 'description', 'price'],
