@@ -1,4 +1,4 @@
-import { ProductModel } from '../database';
+import { PhotoModel, ProductModel } from '../database';
 
 const ProductController = {
   store: async (req, res) => {
@@ -18,12 +18,19 @@ const ProductController = {
   },
   index: async (req, res) => {
     try {
-      const products = await ProductModel.findAll({ attributes: ['id', 'title', 'description', 'price'] });
+      const products = await ProductModel.findAll({
+        attributes: ['id', 'title', 'description', 'price'],
+        include: {
+          model: PhotoModel,
+          attributes: ['id', 'originalname', 'url']
+        },
+      });
       return res.json(products);
     } catch (e) {
-      return res.status(500).json({
-        errors: e.errors.map((err) => err.message),
-      });
+      // return res.status(500).json({
+      //   errors: e.errors.map((err) => err.message),
+      // });
+      console.log(e);
     }
   },
   show: async (req, res) => {
