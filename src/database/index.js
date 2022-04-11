@@ -2,6 +2,7 @@ import { Sequelize, DataTypes } from 'sequelize';
 import databaseConfig from '../config/database';
 import Order from '../models/Order';
 import OrderProduct from '../models/OrderProduct';
+import Photo from '../models/Photo';
 import Product from '../models/Product';
 import User from '../models/User';
 
@@ -10,29 +11,36 @@ export const UserModel = User(connection, DataTypes);
 export const ProductModel = Product(connection, DataTypes);
 export const OrderModel = Order(connection, DataTypes);
 export const OrderProductModel = OrderProduct(connection, DataTypes);
-UserModel.associate = function () {
+export const PhotoModel = Photo(connection, DataTypes);
+UserModel.associate = () => {
   UserModel.hasMany(OrderModel, {
     foreignKey: 'user_id',
     as: 'orders',
   });
 };
-ProductModel.associate = function () {
+ProductModel.associate = () => {
   ProductModel.belongsTo(OrderModel, {
     foreignKey: 'order_id',
     as: 'orders',
   });
+  ProductModel.hasMany(PhotoModel, {
+    foreignKey: 'product_id',
+  });
+  ProductModel.belongsToMany(OrderModel, { through: OrderProductModel });
 };
-OrderModel.associate = function () {
+
+OrderModel.associate = () => {
+  OrderModel.hasMany(ProductModel, {
+    through: OrderProductModel,
+  });
+  OrderModel.belongsToMany(ProductModel, { through: OrderProductModel });
   OrderModel.belongsTo(UserModel, {
     foreignKey: 'user_id',
     as: 'users',
   });
 };
-OrderModel.associate = function () {
-  OrderModel.hasMany(ProductModel, {
-    through: OrderProductModel,
+PhotoModel.associate = () => {
+  PhotoModel.belongsTo(ProductModel, {
+    foreignKey: 'product_id',
   });
 };
-
-OrderModel.belongsToMany(ProductModel, { through: OrderProductModel });
-ProductModel.belongsToMany(OrderModel, { through: OrderProductModel });
