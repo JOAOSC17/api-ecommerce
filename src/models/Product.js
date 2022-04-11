@@ -21,7 +21,7 @@ export default (sequelize, DataTypes) => sequelize.define('product', {
   },
   price: {
     type: DataTypes.FLOAT,
-    defaultValue: '',
+    defaultValue: 0,
     validate: {
       isFloat: {
         msg: 'Price precisa ser um número inteiro ou de ponto flutuante',

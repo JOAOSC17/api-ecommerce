@@ -1,13 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import { resolve } from 'path';
-import UserRoutes from './src/routes/UserRoutes';
-import './src/database';
-import LoginRoutes from './src/routes/LoginRoutes';
-import ProductRoutes from './src/routes/ProductRoutes';
-import OrderRoutes from './src/routes/OrderRoutes';
-import PaymentRoutes from './src/routes/PaymentRoutes';
-import PhotoRoutes from './src/routes/PhotoRoutes';
+import UserRoutes from './routes/UserRoutes';
+import './database';
+import LoginRoutes from './routes/LoginRoutes';
+import ProductRoutes from './routes/ProductRoutes';
+import OrderRoutes from './routes/OrderRoutes';
+import PaymentRoutes from './routes/PaymentRoutes';
+import PhotoRoutes from './routes/PhotoRoutes';
 
 const app = express();
 app.use(cors());
